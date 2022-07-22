@@ -1,0 +1,25 @@
+{
+  "name": "prieds-test-api-rior",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riorichard98/PRIEDS-test-api-RioR.git"
+  },
+  "keywords": [],
+  "author": "Rio Richard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riorichard98/PRIEDS-test-api-RioR/issues"
+  },
+  "homepage": "https://github.com/riorichard98/PRIEDS-test-api-RioR#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongodb": "^4.8.0"
+  }
+}
