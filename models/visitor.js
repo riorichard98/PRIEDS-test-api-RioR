@@ -3,13 +3,14 @@ const { getDataBase } = require("../config/mongoDb");
 const { currentTimeGetter } = require("../helpers/currentTimeGetter");
 
 class Visitor {
-    static async findAllVisitor(page) {
+    static async findAllVisitor(query) {
         try {
+            let searchQuery = query.search ? {name: new RegExp(`^${query.search}`)} : {}
             const db = getDataBase()
             const visitors = await db
                 .collection('visitors')
-                .find()
-                .skip((page - 1) * 10)
+                .find(searchQuery)
+                .skip((query.page - 1) * 10)
                 .limit(11)
                 .toArray()
             const total = await db

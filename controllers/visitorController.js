@@ -1,11 +1,14 @@
 const { isInteger } = require("../helpers/integerChecker");
 const { Visitor } = require("../models/visitor");
 
-class VisitorController{
+class VisitorController {
     static async findAllVisitor(req, res, next) {
         try {
             let page = req.query.page ? req.query.page : 1
-            const data = await Visitor.findAllVisitor(page)
+            const data = await Visitor.findAllVisitor({
+                page,
+                search: req.query.search
+            })
             res.status(200).json(data)
         } catch (error) {
             next(error)
@@ -14,18 +17,18 @@ class VisitorController{
 
     static async createVisitor(req, res, next) {
         try {
-            if(!req.body.name || !req.body.age){
-                throw({
-                    type:"known",
-                    code:400,
-                    message:"Name and age required"
+            if (!req.body.name || !req.body.age) {
+                throw ({
+                    type: "known",
+                    code: 400,
+                    message: "Name and age required"
                 })
             }
-            if(!isInteger(req.body.age)){
-                throw({
-                    type:"known",
-                    code:400,
-                    message:"Invalid age"
+            if (!isInteger(req.body.age)) {
+                throw ({
+                    type: "known",
+                    code: 400,
+                    message: "Invalid age"
                 })
             }
             const data = {
@@ -33,7 +36,7 @@ class VisitorController{
                 age: req.body.age
             }
             const visitor = await Visitor.createVisitor(data)
-            res.status(200).json({visitor,message:"Success register"})
+            res.status(200).json({ visitor, message: "Success register" })
         } catch (error) {
             next(error)
         }
@@ -50,4 +53,4 @@ class VisitorController{
     }
 }
 
-module.exports = {VisitorController}
+module.exports = { VisitorController }
