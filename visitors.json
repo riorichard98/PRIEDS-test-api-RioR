@@ -1,0 +1,17 @@
+[
+    {
+        "name":"Rio Richard",
+        "Age":24,
+        "CreatedAt":"2022-07-10 13:24:51"
+    },
+    {
+        "name":"Dodi",
+        "Age":20,
+        "CreatedAt":"2022-07-10 15:24:51"
+    },
+    {
+        "name":"Adi",
+        "Age":29,
+        "CreatedAt":"2022-07-10 17:24:51"
+    }
+]
