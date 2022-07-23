@@ -5,7 +5,7 @@ class VisitorController{
     static async findAllVisitor(req, res, next) {
         try {
             let page = req.query.page ? req.query.page : 1
-            const data = Visitor.findAllVisitor(page)
+            const data = await Visitor.findAllVisitor(page)
             res.status(200).json(data)
         } catch (error) {
             next(error)
@@ -32,8 +32,8 @@ class VisitorController{
                 name: req.body.name,
                 age: req.body.age
             }
-            const visitor = Visitor.createVisitor(data)
-            res.status(200).json(visitor)
+            const visitor = await Visitor.createVisitor(data)
+            res.status(200).json({visitor,message:"Success register"})
         } catch (error) {
             next(error)
         }
@@ -42,7 +42,7 @@ class VisitorController{
     static async findVisitorById(req, res, next) {
         try {
             const { id } = req.params
-            const visitor = Visitor.findVisitorById(id)
+            const visitor = await Visitor.findVisitorById(id)
             res.status(200).json(visitor)
         } catch (error) {
             next(error)

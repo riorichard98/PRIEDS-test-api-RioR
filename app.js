@@ -14,7 +14,7 @@ app.use('/', allRoutes)
 app.use(errorHandler)
 
 connectMongoDb()
-    .then(db => {
+    .then(() => {
         app.listen(port, () => {
             console.log(`Listening on port ${port}`)
         })

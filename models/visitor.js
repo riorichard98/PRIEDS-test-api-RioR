@@ -16,7 +16,9 @@ class Visitor {
                 .collection('visitors')
                 .count()
             const nextPage = visitors.length === 11 ? true : false
-            visitors.pop()
+            if(nextPage){
+                visitors.pop()
+            }
             return {visitors,total,nextPage}
         } catch (error) {
             throw (error)
@@ -28,10 +30,11 @@ class Visitor {
             const db = getDataBase()
             const lastVisitor = await db
                 .collection('visitors')
-                .find().
-                sort({ queueNumber: -1 })
+                .find()
+                .sort({ queueNumber: -1 })
                 .limit(1)
-            data.queueNumber = 'A-' + (parseInt(lastVisitor.queueNumber.split('-')[1]) + 1)
+                .toArray()
+            data.queueNumber = 'A-' + (parseInt(lastVisitor[0].queueNumber.split('-')[1]) + 1)
             data.createdAt = currentTimeGetter()
             const visitor = await db
                 .collection('visitors')
